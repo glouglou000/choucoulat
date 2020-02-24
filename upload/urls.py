@@ -20,4 +20,6 @@ from . import views
 
 urlpatterns = [
     path('/telechargement', views.telechargement),
+    path('/uploading_file', views.uploading_file),
+    
 ]

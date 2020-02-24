@@ -1,6 +1,27 @@
+import os
+import shutil
 from django.shortcuts import render
+from django.http import JsonResponse
+
 from .models import video_upload
 from .forms import video_upload_form
+
+from .paths import upload_folder
+
+def verify_folder(user):
+
+    path_user = upload_folder + "/" + str(user)
+    
+    if not os.path.exists(path_user):
+        os.makedirs(path_user)
+
+    return path_user
+
+def deplacement_video(video_name, path_user):
+
+    current_path = upload_folder + "/" + str(video_name)
+    deplacement_path = path_user + "/" + str(video_name)
+    shutil.move(current_path, deplacement_path)
 
 
 
@@ -13,7 +34,7 @@ def uploading_file(request):
     form = video_upload_form(request.POST, request.FILES)
 
     #Post from template.²
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
 
         print("Uploading video.")
 
@@ -25,12 +46,24 @@ def uploading_file(request):
             #Uploading file.
             name_video = request.FILES['docfile']                       #Recuperate the file.
             form.cleaned_data['docfile'].name                           #Cleanning.
+            
             newdoc = video_upload(docfile = request.FILES['docfile'])   #Call model.
-            newdoc.save()                                               #Saving.
+
+            path_user = verify_folder(request.user)
+            newdoc.save()              #Saving.
+            deplacement_video(name_video, path_user)
+
 
             print("video name's : ", str(name_video))
 
             return JsonResponse({"video_name" : str(name_video)})
+
+
+    else:
+        return JsonResponse({"error" : "coonection", "form": form})
+
+
+
 
 
 def telechargement(request):
