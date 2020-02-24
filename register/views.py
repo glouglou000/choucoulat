@@ -23,8 +23,8 @@ def login_view(request):
 
     if form_loggin.is_valid():
 
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
+        username = form_loggin.cleaned_data.get('username')
+        password = form_loggin.cleaned_data.get('password')
 
         print(username, password)
 
@@ -52,8 +52,8 @@ def register_view(request):
 
     if form_register.is_valid():
 
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
+        user = form_register.save(commit=False)
+        password = form_register.cleaned_data.get('password')
         user.set_password(password)
         user.save()
         
