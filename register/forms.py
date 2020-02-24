@@ -9,14 +9,14 @@ User = get_user_model()
 class UserLoginForm(forms.Form):
     """this is form for login and run session"""
 
-    username = forms.CharField()
+    username= forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean(self, *args, **kwargs):
         """cleanning entrance"""
 
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
+        username = self.cleaned_data.get('username_login')
+        password = self.cleaned_data.get('password_login')
 
         if username and password:
             user = authenticate(username=username, password=password)

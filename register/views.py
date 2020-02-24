@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .forms import UserLoginForm, UserRegisterForm
+from .models import Accounts
 
-def compte(request):
-    return render(request, "compte.html")
+
 
 
 def login_view(request):
@@ -11,23 +11,23 @@ def login_view(request):
 
     next = request.GET.get('next')
     form = UserLoginForm(request.POST or None)
-    
+
     if form.is_valid():
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
-        user = authenticate(username=username,
-                            password=password)
-        
+        user = authenticate(username=username, password=password)
+
         login(request, user)
-        
+
         if next:
             return redirect(next)
-        
+
         return redirect('/')
 
     context = {'form':form}
 
-    return render(request, 'login.html', context)
+    return context
+
 
 
 def register_view(request):
@@ -45,7 +45,7 @@ def register_view(request):
         
         acc = Accounts(name=user.username)
         acc.save()
-        
+ 
         new_user = authenticate(username=user.username,
                                 password=password)
 
@@ -53,11 +53,29 @@ def register_view(request):
 
         if next:
             return redirect(next)
+
         return redirect('/')
 
-    context = {'form':form}
+    context = {'form': form}
 
-    return render(request, 'signup.html', context)
+    return context
+
+
+def compte(request):
+
+    form_login = UserLoginForm(request.POST or None)
+    form_register = UserRegisterForm(request.POST or None)
+
+    context = {'login': form_login, 'register': form_register}
+
+    return render(request, "compte.html", context)
+
+
+
+
+
+
+
 
 
 def logout_view(request):
