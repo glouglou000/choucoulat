@@ -78,10 +78,15 @@
 
                 <div class="divB">
                     <center>
-                        <div id="uploading">
-                            Télécharger ma video
-                            {{form}}
-                        </div>
+                        <form method="POST" action="">{% csrf_token %}
+                            <div id="uploading">
+                                <form enctype="multipart/form-data" method="POST" action="">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <input type="submit" value="Upload" id="upload"/>
+                                </form>
+                            </div>
+                        </form>
 
 
 
@@ -343,7 +348,33 @@
     };
 
 
+    jQuery("form").on("submit", function(e){
+        e.preventDefault();
 
+        console.log("Uploading video in course...")
+
+        var data = new FormData(this);
+
+        $.ajax({
+            data:data,
+            cache: false,
+            type:"POST",
+            url:"uploading_file",
+            processData:false,
+            contentType:false,
+          })
+          .done(function(data){
+              if (data.error){
+                  {}
+              }
+              else{
+                  console.log("Uploading video finish. Treating video in course...")
+                  document.getElementById("response").click();
+                  treat_video_camera(data["video_name"])
+                  VIDEO_NAME = data["video_name"];
+            };
+        });
+    });
 
 
    
