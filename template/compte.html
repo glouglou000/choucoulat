@@ -52,12 +52,36 @@
 
 
                 <div class="divB">
+
+
                     <center>
-                        Je rejoins la tribus.
-                            {{login}}
-                        <br>
-                        Je me connecte.
-                            {{register}}
+                        <button onclick="displaying('balise_one')">Connexion</button>
+                        <button onclick="displaying('balise_two')">Inscription</button>
+                    </center>
+
+                    
+                    <center>
+
+                        <div id="balise_one" style="display:none">
+
+                            {{mode}}
+                            <form method="POST" id="" action="login_view">{% csrf_token %}<br><br><center>
+
+                                Je connecte.
+                                    {{login}}
+                                    <button type="submit" id="registration">Button</button>
+                            </form>
+                        </div>
+
+
+                        <div id="balise_two" style="display:none">
+                            <form method="POST" id="" action="register_view">{% csrf_token %}<br><br><center>
+                                <br>
+                                Je m'inscris.<br>
+                                    {{register}}
+                                    <button type="submit" id="">Button</button>
+                            </form>
+                        </div>
                     </center>
                 
                 </div>
@@ -161,8 +185,15 @@
 
 
     function navigation(page2){
-         document.location.href=page2; 
+        document.location.href=page2; 
     };
+
+
+    function displaying(balise){
+        document.getElementById(balise).style.display = "block";
+    };
+
+
 
 
 </script>

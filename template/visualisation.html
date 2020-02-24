@@ -1,4 +1,4 @@
-
+{% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,6 @@
             <div class="Div"><!-- Top First Div -->
 
                 <div class="divA" id="a1">
-
                 </div>
 
 
@@ -35,12 +34,26 @@
                             <h2>Visualiation</h2>
                             <br>
                             je choisis mes emoticons
+
+                            <button id="button_appli" onclick="appli()">Button</button>
+
                         </div>
                     </center>
                     
                 </div>
 
                 <div class="divC">
+                    <h1>Mes videos</h1>
+                    <div style="position:absolute;">
+                        <video controls muted><source src=""></video><br>
+                        <video controls muted><source src=""></video><br>
+                        <video controls muted><source src=""></video><br>
+                        <video controls muted><source src=""></video>
+                    </div>
+
+                    <div id="" style='position:absolute;right:0;' >
+                        <img src= '{% static "/visualisation/yeux/un/gros_oeil.png" %}'>
+                    </div>
 
                 </div>
 
@@ -55,6 +68,7 @@
 
 
                 <div class="divB">
+                
                     <center>
                         <video controls muted><source src=""></video>
                     </center>
@@ -164,7 +178,47 @@
     };
 
 
+
+    function appli(){
+
+        $.ajax({
+              data:{"start": "start",
+                    csrfmiddlewaretoken:'{{ csrf_token }}'
+                   },
+              type:"POST",
+              url:"visualisation",
+          })
+          .done(function(data){
+              if (data.error){
+                  console.log("error visualisation")
+              }
+              else{
+
+                {}
+
+             };
+        });
+    };
+
+
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
