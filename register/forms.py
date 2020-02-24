@@ -15,18 +15,18 @@ class UserLoginForm(forms.Form):
     def clean(self, *args, **kwargs):
         """cleanning entrance"""
 
-        username = self.cleaned_data.get('username_login')
-        password = self.cleaned_data.get('password_login')
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
 
         if username and password:
             user = authenticate(username=username, password=password)
             if not user:
                 raise forms.ValidationError('logins erronés')
-                return "login"
+
             
             if not user.check_password(password):
-                forms.ValidationError('password erronés')
-                return "password"
+                raise forms.ValidationError('password erronés')
+
 
         return super(UserLoginForm, self).clean(*args, **kwargs)              
 
@@ -54,7 +54,8 @@ class UserRegisterForm(forms.ModelForm):
         email_qs = User.objects.filter(email=email)
         
         if email_qs.exists():
+
             raise forms.ValidationError(
                 "email existe deja")
-            return "existing"
+
         return super(UserRegisterForm, self).clean(*args, **kwargs)
