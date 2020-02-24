@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 from .forms import UserLoginForm, UserRegisterForm
 from .models import Accounts
@@ -9,34 +15,42 @@ from .models import Accounts
 def login_view(request):
     """Here we define the login view"""
 
-    next = request.GET.get('next')
-    form = UserLoginForm(request.POST or None)
 
-    if form.is_valid():
+    form_register = UserRegisterForm(request.POST or None)
+    form_loggin = UserLoginForm(request.POST or None)
+
+    print("calling loggin views")
+
+    if form_loggin.is_valid():
+
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
+
+        print(username, password)
+
+        
         user = authenticate(username=username, password=password)
 
         login(request, user)
-
-        if next:
-            return redirect(next)
-
+ 
         return redirect('/')
 
-    context = {'form':form}
+    else:
 
-    return context
+        context = {'login': form_loggin, "register":form_register,
+                   "error": "mail existing already", "mode":"login"}
+        return render(request, "compte.html", context)
 
 
 
 def register_view(request):
     """Here we define the register view"""
 
-    next = request.GET.get('next')
-    form = UserRegisterForm(request.POST or None)
 
-    if form.is_valid():
+    form_register = UserRegisterForm(request.POST or None)
+    form_loggin = UserLoginForm(request.POST or None)
+
+    if form_register.is_valid():
 
         user = form.save(commit=False)
         password = form.cleaned_data.get('password')
@@ -46,26 +60,31 @@ def register_view(request):
         acc = Accounts(name=user.username)
         acc.save()
  
-        new_user = authenticate(username=user.username,
-                                password=password)
+        new_user = authenticate(username=user.username, password=password)
 
         login(request, new_user)
 
-        if next:
-            return redirect(next)
-
         return redirect('/')
 
-    context = {'form': form}
+    else:
 
-    return context
+
+        context = {'login': form_loggin, "register":form_register,
+                   "mode":"register"}
+  
+        return render(request, "compte.html", context)
+
+
+
 
 
 def compte(request):
 
+
     form_login = UserLoginForm(request.POST or None)
     form_register = UserRegisterForm(request.POST or None)
-
+    if form_register == "email":
+        print("yeahhhhhhhhhh")
     context = {'login': form_login, 'register': form_register}
 
     return render(request, "compte.html", context)
