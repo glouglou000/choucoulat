@@ -36,13 +36,22 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    "django.contrib.sites",
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
     'upload',
     'register',
-    'visualisation'
+    'visualisation',
+
+
+    'allauth',
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.facebook"
 ]
 
 MIDDLEWARE = [
@@ -108,6 +117,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
+AUTHENTIFICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+    "social_code.backends.twitter.TwitterOAuth",
+    "social_code.backends.facebook.FacebookOAuth2",
+    "social_code.backends.instagram.InstagramOAuth2",
+]
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
