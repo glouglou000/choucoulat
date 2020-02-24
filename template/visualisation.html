@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html>
 
@@ -40,15 +41,16 @@
                         </div>
                     </center>
                     
-                </div>
+                </div>  
 
                 <div class="divC">
                     <h1>Mes videos</h1>
                     <div style="position:absolute;">
-                        <video controls muted><source src=""></video><br>
-                        <video controls muted><source src=""></video><br>
-                        <video controls muted><source src=""></video><br>
-                        <video controls muted><source src=""></video>
+
+                        {% for video in video_user %}
+                            <video controls muted width="50%;" style="border:1px solid black;border-radius:20px;"><source src="{{video}}"></video><br>
+                        {% endfor %}
+
                     </div>
 
                     <div id="" style='position:absolute;right:0;' >
