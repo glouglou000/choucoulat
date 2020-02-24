@@ -1,0 +1,89 @@
+
+<center>
+    <div class="in_square">
+
+        <h3 id="hand"  onmouseover="active('line_hand1', 'line_hand2', 'line_hand3', 'line_hand4')"
+                      onmouseout="deactive('line_hand1', 'line_hand2', 'line_hand3', 'line_hand4',
+                                           '140', '155', '155', '125')">
+            <a href="/#dzad">LES MAINS</a>
+        </h3>
+
+        <svg class="line_under_h3" id="line_hand"
+            width="200" height="2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" x2="300" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+            <path fill="none" stroke="blue" stroke-width="5"/>
+        </svg>
+
+
+        <ul>
+            <li>Détection de la main</li>
+            <svg class="line_under_h3" id="line_hand1"
+                width="140" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" x2="140" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>
+
+
+            <li>Traitement du squelette</li>
+            <svg class="line_under_h3" id="line_hand2"
+                width="155" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" x2="155" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>
+
+
+            <li>Application du squelette</li>
+            <svg class="line_under_h3" id="line_hand3"
+                width="155" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" x2="155" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>
+
+
+            <li>Analyse des doigts</li>
+            <svg class="line_under_h3" id="line_hand4"
+                width="125" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" x2="125" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>  
+        </ul>
+
+    </div>
+</center>
+
+
+
+
+<style>
+    #hand:hover + #line_hand{
+        color:red;
+        visibility:visible;
+        stroke-dashoffset: 0;
+    }
+    #line_hand{
+        visibility:hidden;
+        stroke-dasharray: 320;
+        stroke-dashoffset: 320;
+        transition: 1.5s;
+    }
+    #line_hand1{
+        stroke-dasharray: 140;
+        stroke-dashoffset: 140;
+        transition: 1.5s;
+    }
+    #line_hand2{
+        stroke-dasharray: 155;
+        stroke-dashoffset: 155;
+        transition: 1.5s;
+    }
+    #line_hand3{
+        stroke-dasharray: 155;
+        stroke-dashoffset: 155;
+        transition: 1.5s;
+    }
+    #line_hand4{
+        stroke-dasharray: 125;
+        stroke-dashoffset: 125;
+        transition: 1.5s;
+    }
+</style>

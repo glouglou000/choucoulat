@@ -1,0 +1,369 @@
+<div class="section3_part2_page" id="section3_part2_part3">
+
+
+    <span id="span4"
+        onclick="scrolling('false', 'true', '#section3_part2_part3', '#section3_part2_part2')">
+            Page précédente
+    </span>
+
+
+
+    <div id="animation_s3_p2_p3">
+
+        <img id="img_video_s3_p2_p3"
+            src="https://img.icons8.com/material-outlined/24/000000/video.png">
+
+        <img id="img_camera_s3_p2_p3"
+            src="https://img.icons8.com/ios-filled/50/000000/camcorder.png">
+
+        <p id="animation_p_p3_s3_p3_p2"></p>
+
+
+        <div id="camering">
+
+            {% include "home_composition/sections/section3/webcam_page/page1/webcam1.html" %}
+            {% include "home_composition/sections/section3/webcam_page/page2/webcam2.html" %}
+            {% include "home_composition/sections/section3/webcam_page/page3/webcam3.html" %}
+
+        </div>
+
+
+
+
+
+        <div id="uploading">
+            <id="iframe_uploading"
+                width="49%" height="180px" scrolling="no" frameBorder="0" src='/download'></iframe>
+    
+            <div id="explication_upload_p3_p2">
+                <ul>
+                    <li>1 - </li>
+                    <li>2 - </li>
+                    <li>3 - </li>
+                    <li>4 - </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    
+
+
+    <div id="s3_p2_p3_button">
+
+
+        <div id="video_s3_p2_p3" onclick="choice_animation('Synergo Caméra', 'camera')">
+            <center>
+                <svg width="220" height="50" id="svg_video_s3_p2_p3">
+                    <rect x="0" y="0" rx="5" ry="5" width="220" height="50" stroke="white" stroke-width="3" fill="none"/>
+                    <text class="svg_text" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="white">
+                        J'essaie avec ma webcam.
+                    </text>    
+                </svg>
+            </center>
+        </div>
+
+
+
+
+        <div id="camera_s3_p2_p3" onclick="choice_animation('Synergo Vidéo', 'video')">
+            <center>
+                <svg width="180" height="50" id="svg_cam_s3_p2_p3">
+                    <rect x="0" y="0" rx="5" ry="5" width="180" height="50" stroke="white" stroke-width="3" fill="none"/>
+                    <text class="svg_text" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="white">
+                        J'essaie avec ma vidéo.
+                    </text>    
+                </svg>
+            </center>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<style>
+
+
+
+
+
+
+
+
+
+
+
+
+    #cam{
+        margin-top:10%;
+        width:40%;
+        height:60%;
+        border:2px solid black;
+    }
+    #camering{
+        position:absolute;
+        width:100%;
+        height:100%;
+        z-index:20000000000000000000000;
+        opacity:1;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+    }
+    li{
+        text-align:left;
+    }
+    #iframe_uploading{
+        float:left;
+    }
+    #explication_upload_p3_p2{
+        float:right;
+        width:50%;
+        height:100%;
+        display:none;
+    }
+    #uploading{
+        top:30%;
+        left:0;
+        height:100%;
+        position:absolute;
+        width:100%;
+        margin:0;
+        padding:0;
+
+        opacity:0;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+
+    }
+    #animation_s3_p2_p3{
+        position:absolute;
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+        opacity:0;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+    }
+    .svg_text{
+        color:white;
+        stroke:none;
+    }
+    #svg_video_s3_p2_p3:hover{
+        stroke-dashoffset: 550;
+        stroke:#2D3142;
+        cursor:pointer;
+        opacity:1;
+    }
+    #svg_cam_s3_p2_p3:hover{
+        stroke-dashoffset: 500;
+        stroke:#2D3142;
+        cursor:pointer;
+        opacity:1;
+    }
+    #svg_video_s3_p2_p3{
+        stroke-dasharray: 550;
+        transition: 1.5s;
+    }
+    #svg_cam_s3_p2_p3{
+        stroke-dasharray: 500;
+        transition: 1.5s;
+    }
+    #camera_s3_p2_p3{
+        position:relative;
+        width:50%;
+        float:left;
+    }
+    #video_s3_p2_p3{
+        position:relative;
+        width:50%;
+        float:right;
+    }
+    #img_camera_s3_p2_p3{
+        position:absolute;
+        width:5%;
+        margin-top:15%;
+        margin-right:50%;
+        
+        opacity:0;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+
+    }
+    #img_video_s3_p2_p3{
+        position:absolute;
+        width:5%;
+        margin-top:15%;
+        left:48%;
+        opacity:0;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+
+    }
+    #s3_p2_p3_button{
+        position:relative;
+        width:100%;
+        margin:0;
+        padding:0;
+        margin-top:5%;
+        height:100%;
+    }
+
+    #span4{
+        cursor:pointer;
+        color:white;
+    }
+    #section3_part2_part3{
+        color:white;
+    }
+    #animation_p_p3_s3_p3_p2{
+        position:absolute;
+        width:100%;
+        color:white;
+        letter-spacing:2px;
+        font-weight:bold;
+        top:35%;
+
+        opacity:0;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+    }
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js"></script>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<script>
+
+    document.getElementById("camera_s3_p2_p3").click();
+
+    function raise_(element){
+        setTimeout(function(){
+             document.getElementById(element).style.opacity = "0";
+            }, 1)//1500
+    };
+
+    function increase_size(element){
+        document.getElementById(element).style.width = "10%";
+        document.getElementById(element).style.opacity = "1";
+    };
+
+    function animation_start(text, mode){
+
+        document.getElementById("animation_p_p3_s3_p3_p2").innerHTML = "";
+        document.getElementById("animation_s3_p2_p3").style.opacity = "1";
+
+        if (mode == "video"){
+            document.getElementById("img_camera_s3_p2_p3").style.opacity = "0";
+            document.getElementById("img_video_s3_p2_p3").style.opacity = "1";
+            raise_("img_video_s3_p2_p3");
+
+            setTimeout(function(){
+                document.getElementById("animation_p_p3_s3_p3_p2").innerHTML = text;
+                document.getElementById("animation_p_p3_s3_p3_p2").style.opacity = "1";
+            }, 1)
+            //3000 - 4500
+
+            setTimeout(function(){
+                document.getElementById("animation_p_p3_s3_p3_p2").style.opacity = "0";
+                mode_video();
+            }, 1)
+
+            
+        };
+
+        if (mode == "camera"){
+            document.getElementById("img_video_s3_p2_p3").style.opacity = "0";
+            document.getElementById("img_camera_s3_p2_p3").style.opacity = "1";
+            raise_("img_camera_s3_p2_p3");
+
+
+            setTimeout(function(){
+                document.getElementById("animation_p_p3_s3_p3_p2").innerHTML = text;
+                document.getElementById("animation_p_p3_s3_p3_p2").style.opacity = "1";
+            }, 1)
+
+
+            setTimeout(function(){
+                document.getElementById("animation_p_p3_s3_p3_p2").style.opacity = "0";
+                mode_camera();
+            }, 1)
+
+        };
+
+    };
+
+
+    function mode_camera(){
+        document.getElementById("svg_cam_s3_p2_p3").style.opacity = "0";
+        document.getElementById("svg_video_s3_p2_p3").style.opacity = "0";
+        document.getElementById("uploading").style.opacity = "0";
+        
+        document.getElementById("camering").style.opacity = "1";
+    };
+
+    function mode_video(){
+        document.getElementById("svg_video_s3_p2_p3").style.opacity = "0";
+        document.getElementById("svg_cam_s3_p2_p3").style.opacity = "0";
+        document.getElementById("uploading").style.opacity = "1";
+    };
+
+    function choice_animation(text, mode){
+        animation_start(text, mode);
+    };
+
+</script>
+
+
+

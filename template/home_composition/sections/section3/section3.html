@@ -1,0 +1,163 @@
+<div class="container_section" id="container3">
+
+    <!-- Header (menu and acces to the web site) -->
+    {% include "home_composition/site_access/site_access.html" %}
+    {% include "home_composition/navebarre/navebarre_logo.html" %}
+
+
+    <div class="page_section" id="section3_part1">
+        {% include "home_composition/sections/section3/parts_section3/part1/section3_part1.html" %}
+    </div>
+
+
+    <div class="page_section" id="section3_part2">
+
+
+        {% include "home_composition/sections/section3/parts_section3/part2/page1/page1.html" %}
+        {% include "home_composition/sections/section3/parts_section3/part2/page2/page2.html" %}
+        {% include "home_composition/sections/section3/parts_section3/part2/page3/page3.html" %}
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<style>
+    #container3{
+        background:#7BAABE;
+    }
+
+    .section3_part2_page{
+        height:100%;
+        position:relative;
+        opacity:1;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+    }
+    #section3_part2_part1{
+        background:#7BAABE;
+        color:white;
+        z-index:200;
+    }
+    #span1{
+        cursor:pointer;
+    }
+
+    #section3_part2_part3{
+        background:#7BAABE;
+        z-index:50;
+    }
+    #section3_part2{
+        position:relative;
+        z-index:100;
+    }
+</style>
+
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+
+
+    var FADIN = 0
+
+    //yep....
+    function fadin(){
+
+        if (FADIN == 1){
+
+            document.getElementById("span1").style.visibility = "hidden";
+
+            document.getElementById("section3_part2_part1").style.opacity = "0";
+            document.getElementById("section3_part2_part3").style.opacity = "0";
+            document.getElementById("section3_part2_part2").style.opacity = "1";
+
+        }else if(FADIN == 0){
+
+            document.getElementById("section3_part2_part2").style.opacity = "0";
+            document.getElementById("section3_part2_part1").style.opacity = "1";
+
+        }else if (FADIN == 2){
+            document.getElementById("section3_part2_part2").style.opacity = "0";
+            document.getElementById("section3_part2_part3").style.opacity = "1";
+        };
+    };
+
+
+
+    function button_visibility(){
+        if (FADIN == 1){
+
+            document.getElementById("span1").style.visibility = "hidden";
+            document.getElementById("span4").style.visibility = "hidden";
+
+            setTimeout(function(){
+                document.getElementById("span2").style.visibility = "visible";
+                document.getElementById("span3").style.visibility = "visible"; }, 500)
+
+        }else if(FADIN == 0){
+
+            document.getElementById("span4").style.visibility = "hidden";
+            document.getElementById("span3").style.visibility = "hidden";
+            document.getElementById("span2").style.visibility = "hidden";
+
+            setTimeout(function(){
+                document.getElementById("span1").style.visibility = "visible"; }, 500)
+
+        }else if (FADIN == 2){
+            document.getElementById("span2").style.visibility = "hidden";
+            document.getElementById("span3").style.visibility = "hidden";
+
+            setTimeout(function(){
+                document.getElementById("span4").style.visibility = "visible"; }, 500)
+
+        };
+    };
+
+
+    function scrolling(up, down, elementTop, elementDown){
+
+        if (up == "true"){
+            FADIN += 1
+            fadin();
+            button_visibility();
+            setTimeout(function(){ $(elementTop).slideUp(500).delay(500);}, 1);
+
+        }else if (down == "true"){
+            FADIN -= 1
+            fadin();
+            button_visibility();
+            setTimeout(function(){ $(elementDown).slideDown(500).delay(500);}, 1);
+        };
+    };
+
+
+
+
+
+
+
+
+</script>

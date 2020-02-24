@@ -1,0 +1,81 @@
+<center>
+    <div class="in_square">
+
+
+        <h3 id="head"  onmouseover="active('line_head1', 'line_head2', 'line_head3', '')"
+                      onmouseout="deactive('line_head1', 'line_head2', 'line_head3', '',
+                                           '100', '200', '200', '')">
+
+            <a href="/#3rdPage">LA TÊTE</a>
+        </h3>
+
+        <svg class="line_under_h3" id="line_head"
+            width="200" height="2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" x2="200" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+            <path fill="none" stroke="blue" stroke-width="5"/>
+        </svg>
+
+
+
+        <ul>
+            <li>Inclinaison</li>
+            <svg class="line_under_h3_1" id="line_head1"
+                width="100" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" x2="100" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>
+
+
+
+            <li>Mouvements verticaux et horrizontaux</li>
+            <svg class="line_under_h3_1" id="line_head2"
+                width="200" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" x2="200" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>
+
+
+
+            <li>Zones extérieurs de la tête</li>
+            <svg class="line_under_h3_1" id="line_head3"
+                width="200" height="1" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" x2="200" y1="1" y2="1" stroke="white" fill="transparent" stroke-width="2"/>
+                <path fill="none" stroke="blue" stroke-width="5"/>
+            </svg>
+        </ul>
+
+
+    </div>
+</center>
+
+
+
+<style>
+
+    #head:hover + #line_head{
+        color:red;
+        visibility:visible;
+        stroke-dashoffset: 0;
+    }
+    #line_head{
+        visibility:hidden;
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        transition: 1.5s;
+    }
+    #line_head1{
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        transition: 1.5s;
+    }
+    #line_head2{
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        transition: 1.5s;
+    }
+    #line_head3{
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        transition: 1.5s;
+    }
+</style>

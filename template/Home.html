@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Active Slide - fullPage.js</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
+    <meta name="Resource-type" content="Document" />
+</head>
+
+
+<body>
+
+
+    <div id="fullpage">
+
+
+        {% include "home_composition/sections/section1/section1.html" %}
+
+        {% include "home_composition/sections/section2/section2.html" %}
+
+
+        <div class="section" id="section3">
+            {% include "home_composition/sections/section3/section3.html" %}
+        </div>
+
+        <div class="section" id="section4">
+            {% include "home_composition/sections/section4/section4.html" %}
+        </div>
+
+        <div class="section" id="section5">
+            {% include "home_composition/sections/section5/section5.html" %}
+        </div>
+
+        <div class="section" id="section6">
+            {% include "home_composition/sections/section6/section6.html" %}
+        </div>
+
+
+        <div class="section" id="section7">
+            {% include "home_composition/sections/section7/section7.html" %}
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<style>
+
+    /* Actual page */
+    body{
+        font-family: playfair display;
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+    }
+    .section{
+        text-align:center;
+        width:100%;
+        border:1px solid transparent;
+    }
+    a{
+        color:white;
+        text-decoration:none;
+    }
+
+
+
+
+/* CLASSES */
+    .container_section{
+        position:absolute;
+        padding:0;
+        margin:0;
+        width:100%;
+        height:100%;
+    }
+
+
+/* SQUARE VIEW PROJECT */
+    .svg_square{
+        position:relative;
+        stroke-dasharray: 600;
+        transition: 1.5s;
+    }
+    .svg_square:hover {
+        stroke-dashoffset: 600;
+        stroke:#2D3142;
+    }
+
+    .svg_square:hover text{
+        stroke:none;
+    }
+    .project_view{
+        color:white;
+        letter-spacing:2px;
+        position:fixed;
+    }
+
+
+
+/* PAGE SECTION */
+    .page_section{
+        width:100%;
+        overflow:hidden;
+        margin-top:4%;
+        height:90%;
+    }
+    .container_image_direction{
+        position:absolute;
+        height:50%;
+        width:100%;
+        margin-top:11%;
+        overflow:hidden;
+    }
+    .container_image{
+        width:50%;
+        float:right;
+        height:100%;
+        position:static;
+        text-align:left;
+        padding-top:1%;
+        overflow:hidden;
+    }
+    .image_page{
+        position:relative;
+        width:80%;
+        height:80%;
+        opacity:1;
+        z-index:20;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+    }
+    .svg_progress{
+        position:absolute;
+        width:38%;
+        height:80%;
+        left : 40%;
+        bottom : 21.5%;
+        z-index:1;
+    }
+    .github_direction{
+        color:white;
+        cursor:pointer;
+    }
+    .container_direction{
+        width:50%;
+        height:100%;
+        position:relative;
+    }
+    .to_project_title{
+        position:relative;
+        color:white;
+        margin-top:20%;
+        font-weight:bold;
+        letter-spacing:1px;
+        padding-bottom:2%;
+    }
+    .project_explication{
+        position:relative;
+        color:white;
+        font-weight:bold;
+        width:80%;
+        padding-bottom:8%;
+    }
+    .carre{
+        width:100%;
+        position:relative;
+        height:75px;
+        z-index:100;
+    }
+    .link_github{
+        font-size:0.86em;
+        opacity:0;
+        -webkit-transition: opacity 2s;
+        -moz-transition: opacity 2s;
+        -o-transition: opacity 2s;
+        transition: opacity 2s;
+        position:relative;
+    }
+    .to_project{
+        width:50%;
+        height:100%;
+        margin-left:25%;
+        margin-top:12%;
+    }
+    .percent_progress{
+        position:absolute;
+        left : 68%;
+        top : 35%;
+        color:white;
+        font-size:2em;
+        font-family: playfair display;
+        z-index:10;
+    }
+
+
+
+</style>
+
+
+
+
+
+
+<script type="text/javascript" src="static\home_composition/js/fullpage.js"></script>
+
+<script type="text/javascript">
+    //sectionsColor: ['#1A1A1A', '#1A1A1A', '#7BAABE', 'whitesmoke', '#ccddff'],
+    var myFullpage = new fullpage('#fullpage', {
+        sectionsColor: ['#C6DEA6', '#E55934', '#7BAABE', '#455561', '#ccddff'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'dzad', 'cxwcw', 'lastPage'],
+
+
+    });
+    
+</script>
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<script>
+    //DEFILEMENT DE LA PAGE
+
+    $(document).ready(function(){
+        // au clic sur un lien
+        $('a[href^="#"]').click(function(evt){
+           // bloquer le comportement par défaut: on ne rechargera pas la page
+           evt.preventDefault(); 
+           // enregistre la valeur de l'attribut  href dans la variable target
+     var target = $(this).attr('href');
+           /* le sélecteur $(html, body) permet de corriger un bug sur chrome 
+           et safari (webkit) */
+     $('html, body')
+           // on arrête toutes les animations en cours 
+           .stop()
+           /* on fait maintenant l'animation vers le haut (scrollTop) vers 
+            notre ancre target */
+           .animate({scrollTop: $(target).offset().top}, 1000 );
+        });
+    });
+
+</script>
+
+
+
+<script>
+
+    //Onclick github link appears
+    function appear(github_section, image, link){
+        document.getElementById(github_section).style.opacity = 1;
+        document.getElementById(image).style.opacity = 0;
+        document.getElementById(link).style.opacity = 1;
+        setTimeout(function(){document.getElementById(image).style.opacity = 1;}, 2000);
+    };
+
+    //Switch Eyes picture to Progress picture
+    function progress(image){
+        document.getElementById(image).style.opacity = 0;
+    };
+    //Switch Progress picture to Eyes picture
+    function unprogress(image){
+        document.getElementById(image).style.opacity = 1;
+    };
+
+</script>
