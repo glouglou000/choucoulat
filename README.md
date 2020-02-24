@@ -1,3 +1,5 @@
 # choucoulat
 
-ptin les classes j'ai oublié.... faire des classes !
+bon maintenant le design, le partage sur réseau.
+
+et l'appli !
