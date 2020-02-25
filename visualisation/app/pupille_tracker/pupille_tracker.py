@@ -231,7 +231,7 @@ def find_center_pupille(crop, mask_eyes_img, rayon, mode):
 
 #===================================================== Treatement for one eye.
 
-def find_pupil_center(eye, frame, gray, rayon, mode):
+def find_pupil_center(eye, frame, gray, rayon, mode, mode2):
     """Recuperate egalized rectangle area or box area,
        recuperate contour eyes,
        Superpose egalized rectangle with contour eyes,
@@ -253,7 +253,7 @@ def find_pupil_center(eye, frame, gray, rayon, mode):
 
 
 
-def pupille_tracker(landmarks, frame, gray, head_box, blanck, mode):
+def pupille_tracker(landmarks, frame, gray, head_box, blanck, mode, mode2):
 
     #Recuperate DLIB points.
     eyes = recuperate_eyes(landmarks, frame)
@@ -266,16 +266,18 @@ def pupille_tracker(landmarks, frame, gray, head_box, blanck, mode):
     glob_left, extremum_left   = recuperate_extremums(left_eye, frame)
 
     #Right pupil.
-    right_pupil = find_pupil_center(right_eye, frame, gray, glob_right, mode)
+    right_pupil = find_pupil_center(right_eye, frame, gray, glob_right, mode, mode2)
     right_eye, crop_eyes_right, crop_appli_right = right_pupil
 
     #Left pupil
-    left_pupil = find_pupil_center(left_eye, frame, gray, glob_left, mode)
+    left_pupil = find_pupil_center(left_eye, frame, gray, glob_left, mode, mode2)
     left_eye, crop_eyes_left, crop_appli_left = left_pupil
 
 
 
-    if mode != "":
+    if mode2 == "yes":
+
+
 
         turning, down = face_movement(landmarks, frame, eyes, head_box)
 
@@ -284,7 +286,6 @@ def pupille_tracker(landmarks, frame, gray, head_box, blanck, mode):
 
         left_information = (frame, extremum_left, landmarks, head_box, eyes, glob_left, blanck, "left")
         left_pupil = eyes_movements(left_information)
-
 
 
 
