@@ -25,8 +25,7 @@
 
             <div class="Div"><!-- Top First Div -->
 
-                <div class="divA" id="a1">
-                </div>
+                <div class="divA" id="a1"></div>
 
 
                 <div class="divB">
@@ -40,15 +39,18 @@
 
                         </div>
                     </center>
-                    
-                </div>  
+
+                </div>
 
                 <div class="divC">
                     <h1>Mes videos</h1>
                     <div style="position:absolute;">
 
                         {% for video in video_user %}
-                            <video controls muted width="50%;" style="border:1px solid black;border-radius:20px;"><source src="{{video}}"></video><br>
+                            <video controls muted controls="false" width="50%;"
+                                style="border:1px solid black;border-radius:20px;width:20%;" onclick="video_appli('{{video}}')">
+                                <source src="{{video}}">
+                            </video><br>
                         {% endfor %}
 
                     </div>
@@ -70,11 +72,11 @@
 
 
                 <div class="divB">
-                
+
                     <center>
                         <video controls muted><source src=""></video>
                     </center>
-                
+
                 </div>
 
                 <div class="divC"></div>
@@ -174,6 +176,9 @@
 
 <script>
 
+    $.each($("video"), function(){
+           this.controls = false; 
+    });
 
     function navigation(page2){
          document.location.href=page2; 
@@ -203,10 +208,29 @@
     };
 
 
+    function video_appli(video){
+        console.log(video)
+
+        $.ajax({
+              data:{"video": video,
+                    csrfmiddlewaretoken:'{{ csrf_token }}'
+                   },
+              type:"POST",
+              url:"visualisation",
+          })
+          .done(function(data){
+              if (data.error){
+                  console.log("error visualisation")
+              }
+              else{
+
+                {}
+
+             };
+        });
+    };
+
 </script>
-
-
-
 
 
 
