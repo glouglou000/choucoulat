@@ -52,7 +52,7 @@ def put_picture(eyes, image_appli):
 
 
 
-def video_capture_to_face(video_path, video_name, eyes_image, blink_image):
+def video_capture_to_face(video_path, video_name, eyes_image, blink_image, user, nb):
 
     print("Recuperate dimensions of video.")
 
@@ -70,16 +70,16 @@ def video_capture_to_face(video_path, video_name, eyes_image, blink_image):
     print("path : ", video_save_media)
 
     #Empty video file.
-    video_path = video_save_media.format(video_name + ".mp4")
-    video_path1 = video_save_media.format(video_name + "1.mp4")
+    video_path  = video_save_media.format(user, "visualisation1.mp4")
+    video_path1 = video_save_media.format(user, "visualisation2.mp4")
     print("path video : ", video_path)
 
     writting_animation = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*'X264'), int(frame_sec),
-                          (int(frame_width), int(frame_height)))
+                          (int(frame_width / nb), int(frame_height / nb)))
 
     writting_pupil = cv2.VideoWriter(video_path1, cv2.VideoWriter_fourcc(*'X264'), int(frame_sec),
-                          (int(frame_width), int(frame_height)))
- 
+                          (int(frame_width / nb), int(frame_height / nb)))
+
     #Load DLIB.
     predictor, detector = load_model_dlib(dlib_model)
 
@@ -98,6 +98,9 @@ def video_capture_to_face(video_path, video_name, eyes_image, blink_image):
         _, frame_animation = cap.read()
         if ret:
 
+            frame = cv2.resize(frame, (int(frame_width / nb), int(frame_height / nb)))
+            frame_animation = cv2.resize(frame_animation, (int(frame_width / nb), int(frame_height / nb)))
+
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             #Recuperate landmarks and head box.
@@ -106,10 +109,10 @@ def video_capture_to_face(video_path, video_name, eyes_image, blink_image):
             if landmarks is not None:
 
                 #Recuperate pupil center, eyes constitution = (x, y), crop.
-                right_eye, left_eye = pupille_tracker(landmarks, frame, gray, head_box, "", "yes")
+                right_eye, left_eye = pupille_tracker(landmarks, frame, gray, head_box, "", "yes", "")
                 #cv2.imshow("frame_dlib", frame)
 
-                right_eye, left_eye = pupille_tracker(landmarks, frame_animation, gray, head_box, "", "no")
+                right_eye, left_eye = pupille_tracker(landmarks, frame_animation, gray, head_box, "", "no", "")
 
                 #Savegarde video.
                 writting_pupil.write(frame)
@@ -146,11 +149,11 @@ def video_capture_to_face(video_path, video_name, eyes_image, blink_image):
 
         else:
             oContinuer = False
-            return "/media/video_save/" + str(video_name) + ".mp4", "/media/video_save/" + str(video_name) + "1.mp4"
 
 
-    cap.release()
-    cv2.destroyAllWindows()
+
+    #cap.release()
+    #cv2.destroyAllWindows()
 
 
 
